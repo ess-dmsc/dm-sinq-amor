@@ -25,7 +25,11 @@ vagrant ssh
 ```
 
 ## Installing software related to SINQ AMOR experiment control
-Note that following commands are to be run inside the VM
+Note that following commands are to be run inside the VM (directory `ansible`)
+```
+cd ~/ansible
+```
+
 - First, update ansible such that the version being used in > 2.4. This can be easily done using `pip`
 ```
 sudo pip install ansible
@@ -33,23 +37,23 @@ sudo pip install ansible
 
 - Prepare for the installation using the playbook prepare.yml
 ```
-/usr/bin/ansible-playbook -i hosts ansible/prepare.yml
+/usr/bin/ansible-playbook -i hosts prepare.yml
 ```
 
 - Install everything using one command (may take a lot of time). Other option is to run every playbook in the `ansible/installer` directory
 ```
-/usr/bin/ansible-playbook -i hosts ansible/install.yml
+/usr/bin/ansible-playbook -i hosts install.yml
 ```
 
 ## Managing services
 - Start all the services (also creates the required topics)
 ```
-/usr/bin/ansible-playbook -i hosts ansible/start.yml
+/usr/bin/ansible-playbook -i hosts start.yml
 ```
 
 - Stop all the services (also creates the required topics)
 ```
-/usr/bin/ansible-playbook -i hosts ansible/stop.yml
+/usr/bin/ansible-playbook -i hosts stop.yml
 ```
 
 
