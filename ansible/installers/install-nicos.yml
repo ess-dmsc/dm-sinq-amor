@@ -1,0 +1,1 @@
+- import_playbook: /opt/software/ansible-nicos/install-nicos.yml nicos_facility=nicos_sinq nicos_instrument=amor

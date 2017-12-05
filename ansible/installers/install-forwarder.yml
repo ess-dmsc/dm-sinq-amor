@@ -1,0 +1,5 @@
+- hosts: forwarder
+  vars:
+    software: forward-epics-to-kafka
+  roles:
+    - install

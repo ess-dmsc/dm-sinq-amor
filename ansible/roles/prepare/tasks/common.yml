@@ -1,0 +1,43 @@
+- name: make sure that packages are installed
+  become: yes
+  yum:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - python-pip
+    - cmake3
+
+- name: link cmake3 to cmake
+  become: yes
+  file:
+    src: /usr/bin/cmake3
+    dest: /usr/bin/cmake
+    state: link
+    force: yes
+
+- name: create sources dir
+  become: yes
+  file:
+    path: '{{sources_dir}}'
+    owner: '{{ansible_user_id}}'
+    state: directory
+    follow: yes
+
+- name: figure out if cmake3 exists
+  command: cmake --version
+  register: cmakeversion
+  ignore_errors: true
+
+- name: install cmake3 but only when it does not exist
+  include_tasks: cmake3.yml
+  when: " ( cmakeversion | failed ) or ('3.' not in cmakeversion.stdout) "
+
+- name: make sure conan is installed
+  become: yes
+  pip:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - pip
+    - ansible
+    - conan

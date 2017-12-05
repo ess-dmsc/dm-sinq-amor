@@ -1,0 +1,14 @@
+[simulation]
+127.0.0.1 ansible_connection=local
+
+[kafka_brokers]
+127.0.0.1 ansible_connection=local
+
+[nicos]
+127.0.0.1 ansible_connection=local
+
+[forwarder]
+127.0.0.1 ansible_connection=local
+
+[filewriter]
+127.0.0.1 ansible_connection=local

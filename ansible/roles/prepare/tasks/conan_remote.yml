@@ -1,0 +1,7 @@
+- name: check if conan remote "{{remote}}" exists
+  shell: "conan remote list | grep {{remote}} | cut -d: -f1" 
+  register: result
+
+- name: add conan remote "{{remote}}"
+  shell: conan remote add '{{remote}}' 'https://api.bintray.com/conan/{{remote}}/conan'
+  when: result.stdout == ""

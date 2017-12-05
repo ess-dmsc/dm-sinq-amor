@@ -1,0 +1,1 @@
+- import_playbook: /opt/software/ansible-kafka/install-kafka.yml kafka_version=0.11.0.2

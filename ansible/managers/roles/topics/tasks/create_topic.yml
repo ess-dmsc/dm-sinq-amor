@@ -1,0 +1,17 @@
+- name: create topic
+  shell: "{{topics_exe}} --create --topic {{topic}} --partitions {{partitions}} --replication-factor {{replicas}} --zookeeper localhost:2181"
+
+- name: add additional properties if the file exist
+  stat: 
+    path: "{{role_path}}/files/{{topic}}.properties"
+  register: properties_file
+
+- name: get the config parameters from the file
+  command: "cat {{role_path}}/files/{{topic}}.properties"
+  register: properties
+  when: properties_file.stat.exists
+
+- name: change the config parameters for topic
+  command: "{{topics_exe}} --zookeeper localhost:2181 --alter --topic {{topic}} --config {{item}}"
+  with_items: "{{properties.stdout_lines}}"
+  when: properties_file.stat.exists

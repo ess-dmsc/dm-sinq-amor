@@ -1,0 +1,5 @@
+- hosts: filewriter
+  vars:
+    software: kafka-to-nexus
+  roles:
+    - install

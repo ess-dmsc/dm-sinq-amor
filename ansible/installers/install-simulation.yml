@@ -1,0 +1,1 @@
+- import_playbook: /opt/software/sinq-amorsim/ansible/amor.yml

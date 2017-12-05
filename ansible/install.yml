@@ -1,0 +1,5 @@
+- import_playbook: installers/install-kafka.yml
+- import_playbook: installers/install-simulation.yml
+- import_playbook: installers/install-forwarder.yml
+- import_playbook: installers/install-filewriter.yml
+- import_playbook: installers/install-nicos.yml

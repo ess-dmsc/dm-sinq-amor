@@ -1,0 +1,13 @@
+[Unit]
+Description=Forward EPICS to Kafka
+After=rc-local.service
+
+[Service]
+ExecStart={{build_dir}}/forward-epics-to-kafka --broker-config //localhost:9092/forward-epics-cmds --broker localhost:9092 --status-uri kafka://localhost:9092/forward-epics-status -vvvv
+KillMode=control-group
+KillSignal=SIGINT
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
+

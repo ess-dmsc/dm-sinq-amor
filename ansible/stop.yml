@@ -1,0 +1,5 @@
+- import_playbook: managers/manage-kafka.yml new_state=stopped
+- import_playbook: managers/manage-simulation.yml new_state=stopped
+- import_playbook: managers/manage-forwarder.yml new_state=stopped
+- import_playbook: managers/manage-filewriter.yml new_state=stopped
+- import_playbook: managers/manage-nicos.yml new_state=stop

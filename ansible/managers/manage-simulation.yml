@@ -1,0 +1,3 @@
+- hosts: simulation
+  tasks:
+    - include_tasks: /opt/software/sinq-amorsim/ansible/simulation_state.yml

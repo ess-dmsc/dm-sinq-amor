@@ -1,0 +1,6 @@
+- name: download source files for "{{repo_name}}"
+  git:
+    repo: "{{repo_url}}/{{repo_name}}"
+    dest: "{{sources_dir}}/{{repo_name}}"
+    version: "{{repo_version}}"
+    force: yes

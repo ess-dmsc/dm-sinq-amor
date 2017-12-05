@@ -1,0 +1,15 @@
+- hosts: nicos
+  vars:
+    topic: nicos-flatbuffers
+    partitions: 1
+    replicas: 1
+  roles:
+    - topics
+
+- hosts: nicos
+  vars:
+    topic: nicos-flatbuffers-history
+    partitions: 1
+    replicas: 1
+  roles:
+    - topics

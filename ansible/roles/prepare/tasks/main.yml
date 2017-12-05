@@ -1,0 +1,55 @@
+- name: common tasks
+  import_tasks: common.yml
+
+- name: check the version of ansible
+  assert:
+    that: ansible_version.major >= 2 and ansible_version.minor >= 4
+
+- name: download sinq amor simulation
+  include_tasks: download.yml
+  vars:
+    repo_url: https://github.com/ess-dmsc
+    repo_name: sinq-amorsim 
+    repo_version: "{{amorsim_version}}"
+
+- name: download forwarder repo
+  include_tasks: download.yml
+  vars:
+    repo_url: https://github.com/ess-dmsc
+    repo_name: forward-epics-to-kafka
+    repo_version: "{{forwarder_version}}"
+
+- name: download filewriter repo
+  include_tasks: download.yml
+  vars:
+    repo_url: https://github.com/ess-dmsc
+    repo_name: kafka-to-nexus
+    repo_version: "{{filewriter_version}}"
+
+- name: download dependent repos from ess-dmsc
+  include_tasks: download.yml
+  vars:
+    repo_url: https://github.com/ess-dmsc
+    repo_name: "{{item}}"
+    repo_version: master
+  with_items:
+    - streaming-data-types
+    - ansible-kafka
+    - essiip-fakesinqhw
+
+- name: download dependent repos from DMSC-Instument-Data
+  include_tasks: download.yml
+  vars:
+    repo_url: https://github.com/DMSC-Instrument-Data
+    repo_name: "{{item}}"
+    repo_version: master
+  with_items:
+    - ansible-nicos
+
+- name: add extra conan remotes
+  include_tasks: conan_remote.yml 
+  vars:
+    remote: "{{item}}"
+  with_items:
+    - ess-dmsc
+    - conan-community

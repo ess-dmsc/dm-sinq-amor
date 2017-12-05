@@ -1,0 +1,3 @@
+- hosts: nicos
+  tasks:
+    - include_tasks: /opt/software/ansible-nicos/nicos_services.yml

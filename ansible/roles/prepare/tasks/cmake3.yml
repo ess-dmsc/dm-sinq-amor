@@ -1,0 +1,22 @@
+- name: unarchive cmake3
+  unarchive:
+    src: https://cmake.org/files/v3.10/cmake-3.10.0.tar.gz
+    dest: "{{sources_dir}}"
+    remote_src: yes
+    validate_certs: no
+
+- name: configure cmake3
+  shell: "./bootstrap --prefix=/usr"
+  args:
+    chdir: "{{sources_dir}}/cmake-3.10.0"
+
+- name: build cmake3
+  shell: "make"
+  args:
+    chdir: "{{sources_dir}}/cmake-3.10.0"
+
+- name: install cmake3
+  become: yes
+  shell: "make install"
+  args:
+    chdir: "{{sources_dir}}/cmake-3.10.0"

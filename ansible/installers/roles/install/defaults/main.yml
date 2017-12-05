@@ -1,0 +1,2 @@
+software_dir: '{{sources_dir}}/{{software}}'
+build_dir: '{{software_dir}}/build'

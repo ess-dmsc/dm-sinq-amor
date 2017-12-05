@@ -1,0 +1,9 @@
+- hosts: forwarder
+  tasks:
+    - name: change service state to "{{new_state}}"
+      become: yes
+      service:
+        name: "{{item}}"
+        state: "{{new_state}}"
+      with_items:
+        - forward-epics-to-kafka

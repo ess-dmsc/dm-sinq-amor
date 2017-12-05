@@ -1,0 +1,17 @@
+- name: find the executable for kafka-topics.sh 
+  become: yes
+  shell: "find {{sources_dir}} -name kafka-topics.sh"
+  register: found_files
+
+- debug:
+    msg: "Using: {{found_files.stdout_lines[0]}}" 
+
+- name: check if topic exists
+  shell: "{{found_files.stdout_lines[0]}} --zookeeper localhost:2181 --list"
+  register: topics
+
+- name: create topic (if does not exist)
+  include_tasks: create_topic.yml
+  vars:
+    - topics_exe: "{{found_files.stdout_lines[0]}}"
+  when: topic not in topics.stdout

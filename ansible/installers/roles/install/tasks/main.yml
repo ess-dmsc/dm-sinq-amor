@@ -1,0 +1,29 @@
+- name: create the build directory
+  file:
+    path: '{{build_dir}}'
+    state: directory
+
+- name: install dependencies using conan
+  shell: conan install '{{software_dir}}/conan' --build=missing
+  args:
+    chdir: '{{build_dir}}'
+
+- name: configure using cmake
+  shell: cmake '{{software_dir}}'
+  args:
+    chdir: '{{build_dir}}'
+
+- name: build using make
+  make:
+    chdir: '{{build_dir}}'
+
+- name: install the service file
+  become: yes
+  template:
+    src: '{{software}}.service.j2'
+    dest: '/usr/lib/systemd/system/{{software}}.service'
+    force: yes
+
+- name: Reload systemctl modules
+  become: yes
+  command: systemctl daemon-reload

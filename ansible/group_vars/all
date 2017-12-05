@@ -1,0 +1,5 @@
+sources_dir: "/opt/software"
+amor_dir: "/opt/amor"
+amorsim_dir: "{{amor_dir}}/sinq-amorsim"
+simfiles_dir: "{{amor_dir}}/simfiles"
+epics_dir: "{{amor_dir}}/epics"
