@@ -1,3 +1,11 @@
 - hosts: nicos
   tasks:
-    - include_tasks: /opt/software/ansible-nicos/nicos_services.yml
+    - name: change nicos services state
+      become: yes
+      become_user: nicos
+      shell: "/etc/init.d/nicos-system {{new_state}} -a"
+      environment:
+        PYEPICS_LIBCA: "{{ansible_env.EPICS_BASE}}/lib/{{ansible_env.EPICS_HOST_ARCH}}/libca.so"
+        EPICS_CA_AUTO_ADDR_LIST: "NO"
+        EPICS_CA_ADDR_LIST: "127.0.0.0"
+
