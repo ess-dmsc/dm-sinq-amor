@@ -1,1 +1,1 @@
-- import_playbook: /opt/software/ansible-nicos/install-nicos.yml nicos_facility=nicos_sinq nicos_instrument=amor
+- import_playbook: /opt/software/ansible-nicos/install-nicos.yml nicos_facility=nicos_sinq nicos_instrument=amor nicos_refspec=refs/changes/91/16691/16 nicos_version=FETCH_HEAD

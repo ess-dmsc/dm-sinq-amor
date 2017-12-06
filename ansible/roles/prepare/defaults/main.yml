@@ -1,4 +1,3 @@
 amorsim_version: master
-forwarder_version: master
-filewriter_version: master
-
+forwarder_version: bleeding
+filewriter_version: bleeding
