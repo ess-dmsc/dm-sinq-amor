@@ -35,6 +35,11 @@ cd ~/ansible
 sudo pip install ansible
 ```
 
+- Due to a bug in the ESSS Vagrant machine, one needs to run the following playbook as well:
+```
+/usr/bin/ansible-playbook -i hosts extras/fix-rsync-epics-bug.yml
+```
+
 - Prepare for the installation using the playbook prepare.yml
 ```
 /usr/bin/ansible-playbook -i hosts prepare.yml

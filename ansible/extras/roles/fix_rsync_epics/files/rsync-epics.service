@@ -1,0 +1,9 @@
+[Unit]
+Description=Script that syncs epics folder from the EEE server
+
+[Service]
+ExecStart=/usr/bin/bash -c "rsync -v --recursive --links --perms --times --timeout 120 rsync://owncloud01.esss.lu.se:80/epics /opt/epics --chmod=Dugo=rwx,Fuog=rwx"
+User=ess
+
+[Install]
+WantedBy=multi-user.target

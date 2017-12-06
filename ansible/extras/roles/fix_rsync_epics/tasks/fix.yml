@@ -1,0 +1,40 @@
+- name: stop the service
+  become: yes
+  service:
+    name: rsync-epics
+    state: stopped
+
+- name: unmount the folder /opt/epics
+  become: yes
+  command: umount /opt/epics
+  ignore_errors: yes
+
+- name: remove the current /opt/epics folder
+  become: yes
+  file:
+    path: /opt/epics
+    state: absent
+
+- name: create a new /opt/epics folder
+  become: yes
+  file:
+    path: /opt/epics
+    state: directory
+    owner: ess
+
+- name: replace the service file
+  become: yes
+  file:
+    src: rsync-epics.service
+    dest: /etc/systemd/system/rsync-epics.service
+    force: yes
+
+- name: reload systemctl daemon
+  become: yes
+  command: systemctl daemon-reload
+  
+- name: start the service again
+  become: yes
+  service:
+    name: rsync-epics
+    state: started

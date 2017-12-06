@@ -1,0 +1,8 @@
+- name: check if the service rsync-epics is present
+  stat:
+    path: "/etc/systemd/system/rsync-epics.service"
+  register: service_stat
+
+- name: replace the service
+  import_tasks: fix.yml
+  when: service_stat.stat.exists
