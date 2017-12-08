@@ -1,14 +1,10 @@
 - import_playbook: /opt/software/sinq-amorsim/ansible/amor.yml
 
 - hosts: simulation
-  vars:
-    event_producer: "//localhost:9092/AMOR.area.detector"
   tasks:
-    - name: change the event broker and topic
+    - name: change the generator config file
       become: yes
-      lineinfile:
-        destfile: /opt/amor/simfiles/config.json
-        regexp: '^(.*)producer_uri(.*)'
-        line: '    "producer_uri": "{{event_producer}}",'
-
-    
+      copy:
+        src: generator.config.json
+        dest: /opt/amor/simfiles/config.json
+        force: yes
