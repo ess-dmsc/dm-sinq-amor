@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "ansible", "/home/vagrant/ansible", owner:"vagrant"
+  config.vm.synced_folder "scripts", "/home/vagrant/scripts", owner:"vagrant"
   # For example:
   # On OSX:
   # config.vm.synced_folder "/Users/benjaminbertrand/data", "/data", owner:"benjaminbertrand"

@@ -56,4 +56,24 @@ sudo pip install ansible
 /usr/bin/ansible-playbook -i hosts stop.yml
 ```
 
+## Sample Forwarder command script
+A sample Python script to send a command for the Forwarder to start an EPICS PV is included. Note that following commands are to be run inside the VM (directory `scripts`)
+```
+cd ~/scripts
+```
 
+- Run the script to start forwarding
+```
+./send-forwarder-cmd.py
+```
+
+- Change the PV values to get updates
+```
+caput SQ:AMOR:DIMETIX:LASER ON
+caput SQ:AMOR:DIMETIX:SimVal <newvalue>
+```
+
+- Read the PV values directly
+```
+caget SQ:AMOR:DIMETIX:DIST
+```
