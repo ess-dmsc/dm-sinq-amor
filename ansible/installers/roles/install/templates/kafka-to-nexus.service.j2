@@ -3,7 +3,7 @@ Description=NeXus File Writer
 After=rc-local.service
 
 [Service]
-ExecStart={{build_dir}}/kafka-to-nexus --command-uri kafka://localhost:9092/file-writer-cmds --status-uri kafka://localhost:9092/file-writer-status -vvv
+ExecStart={{build_dir}}/kafka-to-nexus --command-uri kafka://localhost:9092/file-writer-cmds --status-uri kafka://localhost:9092/file-writer-status -v 6
 KillMode=control-group
 KillSignal=SIGINT
 TimeoutStopSec=5
